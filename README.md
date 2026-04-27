@@ -134,13 +134,13 @@ The training data was split into two distinct datasets. The classifier dataset w
 ## Project Structure
 
 Project_KWARC/
-├── Kwartz_GUI.py             # Main application script & GUI loop
-├── Tactical_database.py      # Vehicle intelligence and spec database
-├── KWARTZ_Spotter.pt         # Stage 1: YOLOv8n object detection weights
-├── classify_best.pt          # Stage 2: YOLOv8s-cls classification weights
-├── requirements.txt          # Python dependencies
-├── .gitignore                # Excluded cache and IDE files
-└── README.md                 # Project documentation
+* ├── Kwartz_GUI.py             # Main application script & GUI loop
++ ├── Tactical_database.py      # Vehicle intelligence and spec database
+* ├── KWARTZ_Spotter.pt         # Stage 1: YOLOv8n object detection weights
+* ├── classify_best.pt          # Stage 2: YOLOv8s-cls classification weights
+* ├── requirements.txt          # Python dependencies
+* ├── .gitignore                # Excluded cache and IDE files
+* └── README.md                 # Project documentation
 
 ---
 
