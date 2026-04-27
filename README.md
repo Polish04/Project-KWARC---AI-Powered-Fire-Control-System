@@ -132,7 +132,6 @@ The training data was split into two distinct, hand-built datasets aggregated vi
 
 ## Project Structure
 
-```text
 Project_KWARC/
 ├── Kwartz_GUI.py             # Main application script & GUI loop
 ├── Tactical_database.py      # Vehicle intelligence and spec database
