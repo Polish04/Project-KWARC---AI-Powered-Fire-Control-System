@@ -76,17 +76,15 @@ KWARC employs a **Dual-Stage YOLOv8 Hybrid** architecture to balance real-time t
 
 ## Dataset
 
-The training data was split into two distinct, hand-built datasets aggregated via web-scraping:
+The training data was split into two distinct datasets. The classifier dataset was aggregated via web-scraping:
 
 ### Stage 1: Spotter Dataset (Object Detection)
 * **[INSERT NUMBER] images** of general combat footage and vehicles.
 * **Target Class**: 1 primary class ("Armored Vehicle").
-* **Annotation**: Manual bounding box annotations capturing geometry against varied backgrounds.
 
 ### Stage 2: Classifier Dataset (Specific Recognition)
 * **[INSERT NUMBER] cropped images** focusing exclusively on vehicle chassis geometry.
-* **Target Classes**: 12 distinct vehicle classes.
-* **Classes included**: M1A2 Abrams, Leopard 2, T-72, T-90, [Add others here].
+* **Target Classes**: 12 distinct vehicle classes such as:
 
 ---
 
@@ -106,15 +104,20 @@ The training data was split into two distinct, hand-built datasets aggregated vi
 
 ---
 
-## Challenges Faced
+### Challenges Faced
 
 1. **Overfitting to Pigmentation vs. Geometry**
-   * *Challenge*: Early models relied on pixel pigmentation (background colors/camo) rather than geometric shapes due to faulty datasets.
-   * *Solution*: Retrained the model on a custom, handpicked dataset focusing on chassis silhouettes.
+   * *Challenge*: During early training phases, the classification model began to rely on pixel pigmentation rather than learning the actual geometric shape and structural features of the tanks due to falthy datasets.
+   * *Impact*: The model would falsely classify a completely different vehicle just because it shared the same color palette as the training data.
+   * *Solution*: Retrain a model on a custom handpicked dataset using "download all images" google extension. 
+
+
 
 2. **Dataset Limitations & Motion Blur**
-   * *Challenge*: The handpicked dataset volume is low for deep learning standards, making fast-moving targets difficult to classify.
-   * *Mitigation*: Implemented the **Safe-AI confidence threshold** (`p_conf`) to default to "Unknown Target" rather than guessing during low-confidence frames.
+
+   * *Challenge*: Because the training dataset had to be entirely handpicked and manually annotated, the overall sample volume is relatively low for deep learning standards. 
+   * *Impact*: The classification model occasionally struggles to classify fast-moving targets (due to motion blur) or when viewing the vehicle from heavily obscured/incomplete angles.
+   * *Mitigation*: Implemented the Safe-AI confidence threshold (`p_conf`) so the system defaults to "Unknown Target" rather than guessing wildly during high-motion frames. 
 
 ---
 
