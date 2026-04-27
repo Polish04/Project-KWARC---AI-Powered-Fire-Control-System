@@ -143,19 +143,6 @@ Project_KWARC/
 
 ---
 
-## Project Structure
-
-Project_KWARC/
-├── Kwartz_GUI.py             # Main application script & GUI loop
-├── Tactical_database.py      # Vehicle intelligence and spec database
-├── KWARTZ_Spotter.pt         # Stage 1: YOLOv8n object detection weights
-├── classify_best.pt          # Stage 2: YOLOv8s-cls classification weights
-├── requirements.txt          # Python dependencies
-├── .gitignore                # Excluded cache and IDE files
-└── README.md                 # Project documentation
-
----
-
 ## Installation & Usage
 
 1. Clone the repository:
@@ -170,18 +157,10 @@ Project_KWARC/
 
 ---
 
-## Future Improvements
-
-* Thermal Imaging: Train on FLIR/Thermal footage for night-op capabilities.
-* Automated Rangefinding: Integrate depth-estimation AI (MiDaS) for automatic distance calculation.
-* Hardware Acceleration: Implement TensorRT export for lower latency.
-
----
 
 ## AI Disclosure
 
-* AI Tool: Google Gemini (Model: Gemini 3 Flash)
-* Primary Use: GUI layout assistance, YOLOv8 integration logic, and ballistics mathematics refinement.
+* AI Tool: Google Gemini (Model: Gemini 3 Pro)
 
 ---
 
