@@ -21,8 +21,6 @@
 * [Technologies Used](#technologies-used)
 * [Project Structure](#project-structure)
 * [Installation & Usage](#installation--usage)
-* [Future Improvements](#future-improvements)
-* [AI Disclosure](#ai-disclosure)
 * [References](#references)
 
 ---
@@ -157,16 +155,10 @@ Project_KWARC/
 
 ---
 
-
-## AI Disclosure
-
-* AI Tool: Google Gemini (Model: Gemini 3 Pro)
-
----
-
 ## References
 
 1. Ultralytics YOLOv8 Documentation - https://docs.ultralytics.com
 2. CustomTkinter UI Library - https://customtkinter.tomschimansky.com
 3. OpenCV Python Documentation - https://docs.opencv.org
 4. Dataset Aggregation - "Download All Images" browser extension.
+5. AI Tool: Google Gemini (Model: Gemini 3 Pro)
