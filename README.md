@@ -3,7 +3,7 @@
 **Project Demo:** [Insert Link to your 20-minute YouTube/Zoom Demo Here]
 
 ## Contact
-**Developer**: Bartu
+**Developer**: Bartlomiej Pacyna
 **Project**: CAP 4630 - Intro to Artificial Intelligence
 **Instructor**: Professor Ahmed Imteaj
 **Institution**: Florida Atlantic University
