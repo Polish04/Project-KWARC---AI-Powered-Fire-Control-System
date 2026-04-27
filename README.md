@@ -141,3 +141,54 @@ Project_KWARC/
 ├── requirements.txt          # Python dependencies
 ├── .gitignore                # Excluded cache and IDE files
 └── README.md                 # Project documentation
+
+---
+
+## Project Structure
+
+Project_KWARC/
+├── Kwartz_GUI.py             # Main application script & GUI loop
+├── Tactical_database.py      # Vehicle intelligence and spec database
+├── KWARTZ_Spotter.pt         # Stage 1: YOLOv8n object detection weights
+├── classify_best.pt          # Stage 2: YOLOv8s-cls classification weights
+├── requirements.txt          # Python dependencies
+├── .gitignore                # Excluded cache and IDE files
+└── README.md                 # Project documentation
+
+---
+
+## Installation & Usage
+
+1. Clone the repository:
+   git clone https://github.com/Polish04/Project-KWARC---AI-Powered-Fire-Control-System
+   cd Project-KWARC---AI-Powered-Fire-Control-System
+
+2. Install dependencies:
+   pip install -r requirements.txt
+
+3. Run the system:
+   python Kwartz_GUI.py
+
+---
+
+## Future Improvements
+
+* Thermal Imaging: Train on FLIR/Thermal footage for night-op capabilities.
+* Automated Rangefinding: Integrate depth-estimation AI (MiDaS) for automatic distance calculation.
+* Hardware Acceleration: Implement TensorRT export for lower latency.
+
+---
+
+## AI Disclosure
+
+* AI Tool: Google Gemini (Model: Gemini 3 Flash)
+* Primary Use: GUI layout assistance, YOLOv8 integration logic, and ballistics mathematics refinement.
+
+---
+
+## References
+
+1. Ultralytics YOLOv8 Documentation - https://docs.ultralytics.com
+2. CustomTkinter UI Library - https://customtkinter.tomschimansky.com
+3. OpenCV Python Documentation - https://docs.opencv.org
+4. Dataset Aggregation - "Download All Images" browser extension.
