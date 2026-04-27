@@ -3,11 +3,11 @@
 **Project Demo:** [Insert Link to your 20-minute YouTube/Zoom Demo Here]
 
 ## Contact
-***Developer**: Bartlomiej Pacyna
-***Project**: CAP 4630 - Intro to Artificial Intelligence
-***Instructor**: Professor Ahmed Imteaj
-***Institution**: Florida Atlantic University
-***Project Link**: https://github.com/Polish04/Project-KWARC---AI-Powered-Fire-Control-System
+* **Developer**: Bartu
+* **Project**: CAP 4630 - Intro to Artificial Intelligence
+* **Instructor**: Professor Imteaj
+* **Institution**: Florida Atlantic University
+* **Project Link**: [https://github.com/YourUsername/Project_KWARC](https://github.com/YourUsername/Project_KWARC)
 
 ---
 
