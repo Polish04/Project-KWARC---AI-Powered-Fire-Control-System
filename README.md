@@ -22,6 +22,7 @@
 * [Project Structure](#project-structure)
 * [Installation & Usage](#installation--usage)
 * [References](#references)
+* [Future Improvements](#future-improvements)
 
 ---
 
@@ -30,14 +31,14 @@
 
 The ballistics engine and sensor inputs are modeled assuming integration with the **M1A2 SEPv3 Abrams** platform. All environmental and firing calculations are calibrated to standard 120mm smoothbore ballistics as the default origin.
 
-> **⚠️ AI LIMITATION NOTICE:** The current classification model (`classify_best.pt`) was trained on a custom, hand-built dataset with a limited number of samples. As a result, the AI may occasionally struggle to confidently classify vehicles in fast-moving video feeds, highly obscured environments, or from incomplete angles. This is a known limitation of the training data volume, rather than the system's pipeline architecture.
+> **⚠️ AI LIMITATION NOTICE:** The current classification model (`classify_best.pt`) was trained on a custom, hand-built dataset with a limited number of samples. As a result, the AI may occasionally struggle to confidently classify vehicles in fast-moving video feeds, highly obscured environments, or from incomplete angles. This is a known limitation of the training data volume, rather than the system's pipeline architecture. 
 
 ### Key Features
 * 🎯 **Hybrid AI Pipeline**: Separates object detection and image classification to optimize both speed and accuracy.
 * 🧮 **Dynamic Ballistics Engine**: Calculates Elevation and Lead using custom inputs. 
 * 🖥️ **GUI**: Modern tactical display built natively with CustomTkinter.
 * 🛡️ **Safe-AI Verification**: Built-in confidence thresholds (`p_conf`) to ensure reliable intelligence reporting.
-* 📚 **External Intelligence Database**: Links visual classification to a custom database (`Tactical_database.py`) for vehicle specifications and threat levels.
+* 📚 **External Intelligence Database**: Links visual classification to a custom database (`Database.py`) for vehicle specifications and threat levels.
 
 ---
 
@@ -62,14 +63,14 @@ KWARC employs a **Dual-Stage YOLOv8 Hybrid** architecture to balance real-time t
 * **Role**: Optimized to locate the general shape of armored vehicles and draw bounding boxes.
 * **Input Size**: Standard video frame resolution (scaled to 640×640)
 * **Feature Extraction**: Lightweight CSPDarknet backbone.
-* **Model Size**: ~6 MB (ideal for edge deployment).
+* **Model Size**: ~6 MB 
 * **Inference Time**: Ultra-low latency for real-time continuous video feeds.
 
 ### Stage 2: The Classifier (Specific Recognition)
 * **Base Model**: YOLOv8 Small Classification (`YOLOv8s-cls`)
 * **Role**: Analyzes the cropped bounding box provided by the Spotter to determine the specific vehicle chassis.
 * **Input Size**: Resized to 224×224 RGB.
-* **Output Layer**: Softmax probability distribution across 12 custom vehicle classes.
+* **Output Layer**: Softmax probability distribution across 13 custom vehicle classes.
 * **Model Size**: ~10 MB.
 
 ---
@@ -79,28 +80,35 @@ KWARC employs a **Dual-Stage YOLOv8 Hybrid** architecture to balance real-time t
 The training data was split into two distinct datasets. The classifier dataset was aggregated via web-scraping:
 
 ### Stage 1: Spotter Dataset (Object Detection)
-* **[INSERT NUMBER] images** of general combat footage and vehicles.
+* **13000 images** of general combat footage and vehicles.
 * **Target Class**: 1 primary class ("Armored Vehicle").
 
 ### Stage 2: Classifier Dataset (Specific Recognition)
-* **[INSERT NUMBER] cropped images** focusing exclusively on vehicle chassis geometry.
-* **Target Classes**: 12 distinct vehicle classes such as:
+* **3000 images** focusing exclusively on vehicle chassis geometry.
+* **Target Classes**: 13 distinct vehicle classes such as: M1A2 ABRAMS, C1 ARIETE, CHALLENGER 2, K2 BLACK PANTHER, AMX-56 LECLERC, LEOPARD 2A4, LEOPARD 2A6, MERKAVA MK. 4, T-14 ARMATA, TYPE 10, T-72 / T-80, T-90M, TYPE 99A.
+
+### Data Augmentation & Preprocessing
+To compensate for the limited volume of the hand-picked dataset and prevent overfitting, the following augmentation techniques were applied during training:
+* **Brightness Adjustment**: Randomly varying image exposure to simulate different times of day and weather conditions (Overcast vs. High Noon).
+* **Spatial Shifting**: Translating images to ensure the model recognizes chassis geometry regardless of its position in the frame.
+* **Color/Pigment Jittering**: Modifying saturation and hue to force the model to focus on structural shapes rather than specific camouflage paint schemes.
 
 ---
 
 ## Performance Metrics
 
 ### Stage 1: Detection Performance (The Spotter)
-* **mAP50 (Mean Average Precision)**: [e.g., 92.4%] 
-* **Average Precision (P)**: [e.g., 0.89]
-* **Average Recall (R)**: [e.g., 0.91]
-* **Inference Time**: < 10ms per frame (60+ FPS tracking).
+* **mAP50 (Mean Average Precision)**: 89.9%
+* **Average Precision (P)**: 91.8%
+* **Average Recall (R)**: 85%
+* **Inference Time**: < 12-15ms per frame (70 FPS tracking).
 
 ### Stage 2: Classification Performance (The Classifier)
-* **Top-1 Accuracy**: [e.g., 88.7%] 
-* **Training Epochs**: [e.g., 50] 
-* **Inference Time**: < 5ms per target crop.
-* *(Note: Accuracy may drop on variants with highly similar chassis, such as T-72 vs. T-90 at long distances).*
+* **Top-1 Accuracy**: 84.2%
+* **Top-5 Accuracy**: 97.3%
+* **Training Epochs**: 50
+* **Inference Time**: < 12ms per frame (83 FPS tracking).
+* *(Note: Accuracy may drop on variants with highly similar chassis, such as T-72 vs. T-90).*
 
 ---
 
@@ -135,7 +143,7 @@ The training data was split into two distinct datasets. The classifier dataset w
 
 Project_KWARC/
 * ├── Kwartz_GUI.py             # Main application script & GUI loop
-+ ├── Tactical_database.py      # Vehicle intelligence and spec database
++ ├── Database.py               # Vehicle intelligence and spec database
 * ├── KWARTZ_Spotter.pt         # Stage 1: YOLOv8n object detection weights
 * ├── classify_best.pt          # Stage 2: YOLOv8s-cls classification weights
 * ├── requirements.txt          # Python dependencies
@@ -147,7 +155,7 @@ Project_KWARC/
 ## Installation & Usage
 
 1. Clone the repository:
-   git clone https://github.com/Polish04/Project-KWARC---AI-Powered-Fire-Control-System
+   git clone [https://github.com/Polish04/Project-KWARC---AI-Powered-Fire-Control-System](https://github.com/Polish04/Project-KWARC---AI-Powered-Fire-Control-System)
    cd Project-KWARC---AI-Powered-Fire-Control-System
 
 2. Install dependencies:
@@ -158,10 +166,17 @@ Project_KWARC/
 
 ---
 
+## Future Improvements
+* **Thermal Integration**: Training the Spotter on LWIR (Long-Wave Infrared) datasets for 24/7 operational capability.
+* **Aided Target Prioritization**: Implementation of an algorithm to prioritize targets based on threat level (e.g., prioritizing a T-90M over a transport truck).
+* **Expand Dataset**: Expand dataset for each class to improve accuracy 
+
+---
+
 ## References
 
 1. Ultralytics YOLOv8 Documentation - https://docs.ultralytics.com
 2. CustomTkinter UI Library - https://customtkinter.tomschimansky.com
-3. OpenCV Python Documentation - https://docs.opencv.org
-4. Dataset Aggregation - "Download All Images" browser extension.
-5. AI Tool: Google Gemini (Model: Gemini 3 Pro)
+3. Dataset Aggregation - "Download All Images" browser extension.
+4. AI Tool: Google Gemini (Model: Gemini 3 Pro)
+5.Detection Dataset - https://universe.roboflow.com/ml-intern-2023/tank-idqsj/dataset/2
