@@ -56,22 +56,25 @@ In tactical environments, operators suffer from information overload. Identifyin
 
 ## Model Architecture
 
-KWARC employs a **Dual-Stage YOLOv8 Hybrid** architecture to balance real-time tracking with high-fidelity recognition:
+KWARC utilizes a **Dual-Stage YOLOv8 Hybrid** pipeline, separating spatial detection and detailed classification to maximize real-time processing efficiency:
 
-### Stage 1: The Spotter (Object Detection)
+### Stage 1: The Spotter (Detection)
 * **Base Model**: YOLOv8 Nano (`YOLOv8n`)
-* **Role**: Optimized to locate the general shape of armored vehicles and draw bounding boxes.
-* **Input Size**: Standard video frame resolution (scaled to 640×640)
-* **Feature Extraction**: Lightweight CSPDarknet backbone.
-* **Model Size**: ~6 MB 
-* **Inference Time**: Ultra-low latency for real-time continuous video feeds.
+* **Role**: Full-frame target acquisition and dynamic bounding box generation.
+* **Architecture**: 130 layers | 3.01M parameters | 8.2 GFLOPs
+* **Technical Specs**: 
+  * **Input**: 640×640 resolution
+  * **Backbone**: CSPDarknet
+  * **Size/Latency**: ~6.0 MB footprint | ~7.5ms inference speed
 
-### Stage 2: The Classifier (Specific Recognition)
+### Stage 2: The Classifier (Recognition)
 * **Base Model**: YOLOv8 Small Classification (`YOLOv8s-cls`)
-* **Role**: Analyzes the cropped bounding box provided by the Spotter to determine the specific vehicle chassis.
-* **Input Size**: Resized to 224×224 RGB.
-* **Output Layer**: Softmax probability distribution across 13 custom vehicle classes.
-* **Model Size**: ~10 MB.
+* **Role**: High-fidelity chassis identification from Stage 1 target crops.
+* **Architecture**: 56 layers | 5.10M parameters | 12.6 GFLOPs
+* **Technical Specs**: 
+  * **Input**: 224×224 RGB
+  * **Output**: Softmax distribution across 13 custom classes
+  * **Size/Latency**: ~10.0 MB footprint | ~4.5ms inference speed
 
 ---
 
