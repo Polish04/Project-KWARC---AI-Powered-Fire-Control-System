@@ -104,14 +104,11 @@ To compensate for the limited volume of the hand-picked dataset and prevent over
 * **mAP50 (Mean Average Precision)**: 89.9%
 * **Average Precision (P)**: 91.8%
 * **Average Recall (R)**: 85%
-* **Inference Time**: < 12-15ms per frame (70 FPS tracking).
 
 ### Stage 2: Classification Performance (The Classifier)
 * **Top-1 Accuracy**: 84.2%
 * **Top-5 Accuracy**: 97.3%
 * **Training Epochs**: 50
-* **Inference Time**: < 12ms per frame (83 FPS tracking).
-* *(Note: Accuracy may drop on variants with highly similar chassis, such as T-72 vs. T-90).*
 
 ---
 
