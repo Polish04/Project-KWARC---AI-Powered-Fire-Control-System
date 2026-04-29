@@ -1,6 +1,6 @@
 # KWARC - AI-Powered Fire Control System
 
-**Project Demo:** [Insert Link to your 20-minute YouTube/Zoom Demo Here]
+**Project Demo:** [[Insert Link to your 20-minute YouTube/Zoom Demo Here]](https://www.youtube.com/watch?v=NGXgILE_lR8)
 
 ## Contact
 * **Developer**: Bartlomiej Pacyna
